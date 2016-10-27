@@ -1,0 +1,81 @@
+/*             UNIVERSIDAD TECNICA DEL NORTE
+                      FICA-CIERCOM
+                 SISTEMAS MICROPROCESADOS
+            JUEGOS DE LUCES USANDO FOR ANIDADOS 
+                     KARLA MONCAYO
+                      27/10/2016
+ */
+
+//Inicializar variables de pines
+
+int sw_1=7; //switch 1
+int sw_2=6; //switch 2
+int limite=0;
+int vector_leds [6]={8,9,10,11,12,13};
+/////////////////////////////
+//Variables de contadores
+int i;
+int j;
+int contador;
+int contador_1;
+
+/////////////
+void setup() {
+  
+  pinMode(8,OUTPUT); //pin 8 como salida
+  pinMode(9,OUTPUT); //pin 9 como salida
+  pinMode(10,OUTPUT); //pin 10 como salida
+  pinMode(11,OUTPUT); //pin 11 como salida
+  pinMode(12,OUTPUT); //pin 12 como salida
+  pinMode(13,OUTPUT); //pin 13 como salida
+  pinMode(sw_1,INPUT); //pin 7 como entrada
+  pinMode(sw_2,INPUT); //pin 6 como entrada
+
+}
+
+void loop() {
+
+  
+  //Juego 1
+  
+    if(digitalRead(sw_1)==LOW&&digitalRead(sw_2)==HIGH){
+           delay(300);
+           
+           for(j=0;j<6;j++){
+              for(i=8;i<=13;i++){
+                       digitalWrite(i,HIGH);
+                       delay(300);
+               }
+               for(i=13;i>7;i--){
+                      digitalWrite(i,LOW);
+                      delay(200);
+                 }
+               i=8;
+              }  
+              delay(300);
+              i=0;
+            } 
+            
+////////////////////////////////////////////////////////
+    //Juego 2 
+      
+         if(digitalRead(sw_2)==HIGH&&digitalRead(sw_1)==LOW){
+              delay(300);
+             limite=random(5);
+              for(j=0;j<limite;j++){
+                 for (contador = 8,contador_1=13; contador < 11; contador++,contador_1--) { 
+                    digitalWrite(contador, HIGH);
+                    digitalWrite(contador_1, HIGH);
+                    delay(300);
+                   }//For 2
+
+                 for (contador = 10, contador_1=11; contador_1 < 14; contador--,contador_1++) {
+                     digitalWrite(contador, LOW);
+                     digitalWrite(contador_1, LOW);
+                     delay(150);
+                    }
+                 }
+       }
+        delay(300);
+      }
+     
